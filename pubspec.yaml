@@ -1,8 +1,8 @@
 name: any_widget_marquee
-description: A new Flutter package.
+description: Now with can display a Marquee effect on each and every widget, as other marquee widgets can support only text, with this widget you can marquee any available widget.
 version: 0.0.1
-author:
-homepage:
+author: Darsh Shah (darshshah1996@gmail.com)
+homepage: https://github.com/THALLIVA/any_widget_marquee
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
