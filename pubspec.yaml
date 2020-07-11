@@ -1,6 +1,6 @@
 name: any_widget_marquee
 description: Now with can display a Marquee effect on each and every widget, as other marquee widgets can support only text, with this widget you can marquee any available widget.
-version: 1.0.0
+version: 1.0.1
 author: Darsh Shah darshshah1996@gmail.com
 
 homepage: https://github.com/THALLIVA/any_widget_marquee
