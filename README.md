@@ -5,9 +5,8 @@ only text, with this widget you can marquee any available widget.
 
 Further this has a pure Dart Code. No other dependencies here used.
 
-
-
-
+Example
+![](example.mov)
 ## Import this package
 
 1. Import the package in yur project.

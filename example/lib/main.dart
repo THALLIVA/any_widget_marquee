@@ -12,12 +12,13 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 100.0),
+            padding: const EdgeInsets.only(top: 200.0),
             child: Column(
               children: <Widget>[
                 Container(
                   height: 50,
                   child: AnyMargueeWidget(
+                    speedRate: 20,
                     child: Text(
                       "Text With Default Configuration",
                       style: TextStyle(color: Colors.black),
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: AnyMargueeWidget(
                     marginLeft: 100,
+                    speedRate: 20,
                     child: Text(
                       "Text With Left Align Margin",
                       style: TextStyle(color: Colors.red),
@@ -40,6 +42,7 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: AnyMargueeWidget(
                     marginLeft: 100,
+                    speedRate: 20,
                     betweenSpacing: 100,
                     child: Text(
                       "Spacing Between Marguee Effects",
@@ -52,10 +55,9 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: AnyMargueeWidget(
                     marginLeft: 100,
-                    betweenSpacing: 100,
-                    speedRate: .5,
+                    speedRate: 10,
                     child: Text(
-                      "Marquee Effect Speed",
+                      "Effect Speed",
                       style: TextStyle(color: Colors.green),
                     ),
                   ),
@@ -65,8 +67,7 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: AnyMargueeWidget(
                     marginLeft: 100,
-                    betweenSpacing: 100,
-                    speedRate: 5,
+                    speedRate: 50,
                     child: Text(
                       "Faster Speed",
                       style: TextStyle(color: Colors.yellow),
@@ -77,10 +78,13 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: AnyMargueeWidget(
                     marginLeft: 100,
-                    speedRate: 5,
+                    speedRate: 100,
                     child: Row(
                       children: [
                         Text("Marquee with a Row of text and Icon"),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Icon(
                           Icons.access_alarms,
                           size: 30,
