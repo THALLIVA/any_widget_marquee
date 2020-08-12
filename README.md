@@ -18,4 +18,6 @@ Further this has a pure Dart Code. No other dependencies here used.
 
 ## Example
 ![Demo Video in GitHub](example.gif)
+### Example 2
+For iOS App bar
 ![Demo Video in GitHub](iOSExample.gif)
