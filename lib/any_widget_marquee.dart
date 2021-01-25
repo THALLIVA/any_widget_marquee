@@ -18,6 +18,7 @@ class AnyMargueeWidget extends StatefulWidget {
     this.height,
     this.speedRate = 1,
     this.scrollFromEnd = true,
+    this.delayedStart = const Duration(seconds: 0),
   }) : super(key: key);
 
   double marginLeft;
@@ -27,6 +28,7 @@ class AnyMargueeWidget extends StatefulWidget {
   double height;
   final double speedRate;
   bool scrollFromEnd;
+  Duration delayedStart;
 
   @override
   _AnyMargueeWidgetState createState() => _AnyMargueeWidgetState();
@@ -40,8 +42,8 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
   void initState() {
     super.initState();
     _scrollController = new ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      startTimer();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Future.delayed(widget.delayedStart).then((value) => startTimer());
     });
   }
 
