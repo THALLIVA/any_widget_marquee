@@ -9,7 +9,17 @@ class AnyMargueeSpeed {
 }
 
 class AnyMargueeWidget extends StatefulWidget {
-  AnyMargueeWidget({@required this.child, Key key, this.marginLeft, this.betweenSpacing, this.width, this.height, this.speedRate = 1}) : super(key: key);
+  AnyMargueeWidget({
+    @required this.child,
+    Key key,
+    this.marginLeft,
+    this.betweenSpacing,
+    this.width,
+    this.height,
+    this.speedRate = 1,
+    this.scrollFromEnd = true,
+    this.delayedStart = const Duration(seconds: 0),
+  }) : super(key: key);
 
   double marginLeft;
   double betweenSpacing;
@@ -17,6 +27,8 @@ class AnyMargueeWidget extends StatefulWidget {
   double width;
   double height;
   final double speedRate;
+  bool scrollFromEnd;
+  Duration delayedStart;
 
   @override
   _AnyMargueeWidgetState createState() => _AnyMargueeWidgetState();
@@ -30,15 +42,16 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
   void initState() {
     super.initState();
     _scrollController = new ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      startTimer();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Future.delayed(widget.delayedStart).then((value) => startTimer());
     });
   }
 
   void startTimer() {
     _anyMargueeTimer = Timer.periodic(Duration(microseconds: 16), (timer) {
       final distance = _scrollController.offset ?? 0;
-      if (_scrollController.hasClients) _scrollController.jumpTo(distance + (1 / AnyMargueeSpeed.NORMAL_SPEED) * widget.speedRate);
+      if (_scrollController.hasClients)
+        _scrollController.jumpTo(distance + (1 / AnyMargueeSpeed.NORMAL_SPEED) * widget.speedRate);
     });
   }
 
@@ -64,7 +77,7 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
               itemBuilder: (context, index) {
                 final distance = (index == 0 ? widget.marginLeft : widget.betweenSpacing);
                 return Container(
-                  padding: EdgeInsets.only(left: distance),
+                  padding: EdgeInsets.only(left: widget.scrollFromEnd ? distance : 0),
                   alignment: Alignment.center,
                   child: widget.child,
                 );
