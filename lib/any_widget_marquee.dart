@@ -95,9 +95,9 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
 
   @override
   void dispose() {
-    _anyMargueeTimer.cancel();
+    _anyMargueeTimer?.cancel();
     super.dispose();
-    _scrollController.dispose();
+    _scrollController?.dispose();
   }
 }
 
