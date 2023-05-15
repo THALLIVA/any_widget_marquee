@@ -41,17 +41,19 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
   @override
   void initState() {
     super.initState();
-    _scrollController = new ScrollController();
+    _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(widget.delayedStart).then((value) => startTimer());
+      await Future.delayed(widget.delayedStart);
+      startTimer();
     });
   }
 
   void startTimer() {
     _anyMargueeTimer = Timer.periodic(Duration(microseconds: 16), (timer) {
-      final distance = _scrollController.offset ?? 0;
-      if (_scrollController.hasClients)
+      if (_scrollController.hasClients) {
+        final distance = _scrollController.offset ?? 0;
         _scrollController.jumpTo(distance + (1 / AnyMargueeSpeed.NORMAL_SPEED) * widget.speedRate);
+      }
     });
   }
 
@@ -93,9 +95,9 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
 
   @override
   void dispose() {
-    _anyMargueeTimer.cancel();
-    _scrollController.dispose();
+    _anyMargueeTimer?.cancel();
     super.dispose();
+    _scrollController?.dispose();
   }
 }
 
