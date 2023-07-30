@@ -10,12 +10,12 @@ class AnyMargueeSpeed {
 
 class AnyMargueeWidget extends StatefulWidget {
   AnyMargueeWidget({
-    @required this.child,
-    Key key,
-    this.marginLeft,
-    this.betweenSpacing,
-    this.width,
-    this.height,
+    required this.child,
+    Key? key,
+    required this.marginLeft,
+    required this.betweenSpacing,
+    required this.width,
+    required this.height,
     this.speedRate = 1,
     this.scrollFromEnd = true,
     this.delayedStart = const Duration(seconds: 0),
@@ -35,8 +35,8 @@ class AnyMargueeWidget extends StatefulWidget {
 }
 
 class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
-  Timer _anyMargueeTimer;
-  ScrollController _scrollController;
+  late Timer _anyMargueeTimer;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
@@ -60,6 +60,7 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
   @override
   Widget build(BuildContext context) {
     return ScrollNotificationInterceptor(
+      key: null,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final biggestWidth = constraints.biggest.width;
@@ -95,9 +96,9 @@ class _AnyMargueeWidgetState extends State<AnyMargueeWidget> {
 
   @override
   void dispose() {
-    _anyMargueeTimer?.cancel();
+    _anyMargueeTimer.cancel();
     super.dispose();
-    _scrollController?.dispose();
+    _scrollController.dispose();
   }
 }
 
@@ -105,8 +106,8 @@ class ScrollNotificationInterceptor extends StatelessWidget {
   final Widget child;
 
   ScrollNotificationInterceptor({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override
